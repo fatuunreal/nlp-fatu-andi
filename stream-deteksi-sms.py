@@ -1,13 +1,12 @@
 import pickle
 import streamlit as st
-from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Load models
 model_spam_rf = pickle.load(open('model_rf.pkl', 'rb'))
 model_spam_nb = pickle.load(open('model_nb.pkl', 'rb'))
 
-# Load TF-IDF vocabulary
-loaded_vec = TfidfVectorizer(decode_error="replace", vocabulary=set(pickle.load(open("new_selected_feature_tf-idf.sav", "rb"))))
+# Load TF-IDF yang sudah fit
+loaded_vec = pickle.load(open("tfidf_vectorizer.pkl", "rb"))
 
 # judul
 st.title("NATURAL LANGUAGE PROCESSING A11.4617")
