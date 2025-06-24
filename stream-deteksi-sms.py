@@ -6,7 +6,7 @@ model_spam_rf = pickle.load(open('model_rf.pkl', 'rb'))
 model_spam_nb = pickle.load(open('model_nb.pkl', 'rb'))
 
 # Load TF-IDF yang sudah fit
-loaded_vec = pickle.load(open("tfidf_vectorizer.pkl", "rb"))
+loaded_vec = pickle.load(open("feature_tf-idf.sav", "rb"))
 
 # judul
 st.title("NATURAL LANGUAGE PROCESSING A11.4617")
