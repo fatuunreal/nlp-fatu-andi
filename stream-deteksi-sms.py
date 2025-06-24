@@ -3,8 +3,8 @@ import streamlit as st
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Load models
-model_spam_rf = pickle.load(open('model_spam_rf.sav', 'rb'))
-model_spam_nb = pickle.load(open('model_spam_nb.sav', 'rb'))
+model_spam_rf = pickle.load(open('model_rf.sav', 'rb'))
+model_spam_nb = pickle.load(open('model_nb.sav', 'rb'))
 
 # Load TF-IDF vocabulary
 loaded_vec = TfidfVectorizer(decode_error="replace", vocabulary=set(pickle.load(open("new_selected_feature_tf-idf.sav", "rb"))))
