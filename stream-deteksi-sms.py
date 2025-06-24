@@ -11,7 +11,7 @@ loaded_vec = TfidfVectorizer(decode_error="replace", vocabulary=set(pickle.load(
 
 # judul
 st.title("NATURAL LANGUAGE PROCESSING A11.4617")
-st.title("Deteksi SMS Spam")
+st.title("Klasifikasi SMS Spam")
 st.write("FATU RAHMAT A11.2022.14831")
 st.write("ANDI LAKSONO A11.2022.14839")
 
