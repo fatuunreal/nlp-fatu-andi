@@ -2,11 +2,11 @@ import pickle
 import streamlit as st
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-# load saved model
-model_spam = pickle.load(open('model_spam.sav', 'rb'))
+# Load models
+model_spam_rf = pickle.load(open('model_spam_rf.sav', 'rb'))
+model_spam_nb = pickle.load(open('model_spam_nb.sav', 'rb'))
 
-tfidf = TfidfVectorizer
-
+# Load TF-IDF vocabulary
 loaded_vec = TfidfVectorizer(decode_error="replace", vocabulary=set(pickle.load(open("new_selected_feature_tf-idf.sav", "rb"))))
 
 # judul
@@ -15,16 +15,22 @@ st.title("Deteksi SMS Spam")
 st.write("FATU RAHMAT A11.2022.14831")
 st.write("ANDI LAKSONO A11.2022.14839")
 
+# Input teks SMS
 clean_teks = st.text_input('Masukkan Teks SMS')
 
-spam_detection = ''
+spam_detection_rf = ''
+spam_detection_nb = ''
 
 if st.button('Cek SMS'):
-    predict_spam = model_spam.predict(loaded_vec.fit_transform([clean_teks]))
+    teks_transformed = loaded_vec.transform([clean_teks])
 
-    if(predict_spam == 0):
-        spam_detection = 'SMS Spam'
-    else:
-        spam_detection = 'SMS Normal'
+    # Prediksi dengan Random Forest
+    predict_rf = model_spam_rf.predict(teks_transformed)
+    spam_detection_rf = 'SMS Normal' if predict_rf[0] else 'SMS Spam'
 
-st.success(spam_detection)
+    # Prediksi dengan Naive Bayes
+    predict_nb = model_spam_nb.predict(teks_transformed)
+    spam_detection_nb = 'SMS Normal' if predict_nb[0] else 'SMS Spam'
+
+    st.success(f"Hasil Random Forest: {spam_detection_rf}")
+    st.success(f"Hasil Naive Bayes: {spam_detection_nb}")
