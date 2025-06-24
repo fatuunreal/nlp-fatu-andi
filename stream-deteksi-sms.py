@@ -1,12 +1,11 @@
 import pickle
 import streamlit as st
-from sklearn.feature_extraction.text import TfidfVectorizer
 
-# Load saved models
+# Load models
 model_nb = pickle.load(open('model_nb.pkl', 'rb'))
 model_rf = pickle.load(open('model_rf.pkl', 'rb'))
 
-# Load TF-IDF vectorizer (use pre-fitted)
+# Load TF-IDF vectorizer
 loaded_vec = pickle.load(open("feature_tf-idf.sav", "rb"))
 
 # Judul
